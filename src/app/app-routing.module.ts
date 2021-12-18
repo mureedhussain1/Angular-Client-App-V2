@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'authentication',
+    path: 'login',
     component: AuthenticationComponent,
     loadChildren: () =>
       import('./authentication/authentication.module').then(
@@ -32,7 +32,9 @@ const routes: Routes = [
           import('./tasks/tasks.module').then((m) => m.TasksModule),
       },
     ]
-  }
+  },
+    // redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
