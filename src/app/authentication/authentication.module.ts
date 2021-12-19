@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,6 +7,8 @@ import { AuthenticationComponent } from './authentication.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+// import { MaterialComponentsModule } from '../material-component/material.module';
+import { DemoMaterialModule } from '../demo-material-module';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   imports: [
     CommonModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    // MaterialComponentsModule,
+    FlexLayoutModule,
+    DemoMaterialModule
   ]
 })
 export class AuthenticationModule { }
