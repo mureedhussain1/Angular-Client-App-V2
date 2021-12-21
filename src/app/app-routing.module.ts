@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: AuthenticationComponent,
+    // canActivate: [AuthenticationGuard],
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (m) => m.AuthenticationModule
@@ -16,7 +17,7 @@ const routes: Routes = [
   {
     path: '',
     component: FullLayoutComponent,
-    // canActivate: [AuthenticationGuard],
+    canActivate: [AuthenticationGuard],
     children: [
       {
         path: '',

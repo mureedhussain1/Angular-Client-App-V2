@@ -14,30 +14,17 @@ import { AuthService } from '../shared/services/auth.service';
   providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
+    next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return true;
+  ): boolean {
+    if (window.sessionStorage.getItem('user') != null) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
-
-  // canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>
-  //   {
-  //       return this.authService.isAuthenticated().pipe(map((response: { authenticated: boolean}) => {
-  //           if (response.authenticated) {
-  //               return true;
-  //           }
-  //       this.router.navigate(['/login']);
-  //       return false;
-  //       }), catchError((error) => {
-  //       this.router.navigate(['/login']);
-  //       return of(false);
-  //       }));
-  //   }}
 }

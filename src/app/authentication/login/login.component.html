@@ -1,3 +1,4 @@
+<!-- *ngIf="!isLoggedIn" -->
 <div
   class="login-register"
   style="background-image: url(assets/images/background/login-register.jpg)"
@@ -6,7 +7,6 @@
     <mat-card class="m-t-10">
       <mat-card-content>
         <form
-          *ngIf="!isLoggedIn"
           name="form"
           (ngSubmit)="f.form.valid && onSubmit()"
           #f="ngForm"
