@@ -1,6 +1,6 @@
 export class ApiConstants {
 
-  public static ENV = 'local'; // 'local' or 'live'
+  public static ENV = 'live'; // 'local' or 'live'
   public static BASE_URL = ApiConstants.ENV === 'local' ? 'http://localhost' : 'http://192.168.1.104';
   public static AUTH_SVC_PORT = '4000';
   public static USR_SVC_PORT = '4001';
