@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiConstants } from '../constants/api.constants';
+import { ApiConstants } from '../shared/constants/api.constants';
+import { Router } from '@angular/router';
 
 const AUTH_API = ApiConstants.AUTH_SVC_URL;
 const USER_API = ApiConstants.USR_SVC_URL;
@@ -14,7 +15,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(
@@ -35,5 +36,10 @@ export class AuthService {
       },
       httpOptions
     );
+  }
+
+  public logout() {
+    window.sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

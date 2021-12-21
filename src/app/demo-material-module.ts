@@ -38,7 +38,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import {
+  MatNativeDateModule,
+  MatOptionModule,
+  MatRippleModule,
+} from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { CdkTableModule } from '@angular/cdk/table';
@@ -53,50 +57,54 @@ import { PortalModule } from '@angular/cdk/portal';
 /**
  * NgModule that includes all Material modules that are required to serve the demo-app.
  */
+
+const modules = [
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatBottomSheetModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatTableModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatBadgeModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatSliderModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatNativeDateModule,
+  CdkTableModule,
+  A11yModule,
+  BidiModule,
+  CdkAccordionModule,
+  ObserversModule,
+  OverlayModule,
+  PlatformModule,
+  PortalModule,
+];
 @NgModule({
-    exports: [
-        MatAutocompleteModule,
-        MatButtonModule,
-        MatBottomSheetModule,
-        MatButtonToggleModule,
-        MatCardModule,
-        MatCheckboxModule,
-        MatChipsModule,
-        MatTableModule,
-        MatDatepickerModule,
-        MatDialogModule,
-        MatExpansionModule,
-        MatFormFieldModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        MatListModule,
-        MatMenuModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatProgressSpinnerModule,
-        MatRadioModule,
-        MatRippleModule,
-        MatSelectModule,
-        MatBadgeModule,
-        MatSidenavModule,
-        MatSlideToggleModule,
-        MatSliderModule,
-        MatSnackBarModule,
-        MatSortModule,
-        MatStepperModule,
-        MatTabsModule,
-        MatToolbarModule,
-        MatTooltipModule,
-        MatNativeDateModule,
-        CdkTableModule,
-        A11yModule,
-        BidiModule,
-        CdkAccordionModule,
-        ObserversModule,
-        OverlayModule,
-        PlatformModule,
-        PortalModule
-    ]
+  imports: [...modules],
+  exports: [...modules],
 })
-export class DemoMaterialModule { }
+export class DemoMaterialModule {}
