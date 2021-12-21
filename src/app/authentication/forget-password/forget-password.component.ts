@@ -14,6 +14,7 @@ export class ForgetPasswordComponent implements OnInit {
     email: null,
   };
   isForgotPassword = false;
+  isHideForm = true;
   message = '';
   errorMessage = '';
   constructor(
@@ -30,9 +31,16 @@ export class ForgetPasswordComponent implements OnInit {
 
     this.authService.forgotPassword(email).subscribe({
       next: (data) => {
-        console.log(data);
-        this.message = data?.message;
-        this.isForgotPassword = true;
+        if (data?.status) {
+          this.message = data?.message;
+          this.isForgotPassword = true;
+          this.isHideForm = true;
+        } else {
+          console.log(data);
+          this.message = data?.message;
+          this.isForgotPassword = false;
+          this.isHideForm = false;
+        }
       },
       error: (err) => {
         console.log(err);

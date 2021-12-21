@@ -2,6 +2,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { FullLayoutComponent } from './full-layout/full-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './authentication/authentication.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: FullLayoutComponent,
+    // canActivate: [AuthenticationGuard],
     children: [
       {
         path: '',
@@ -31,10 +33,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./tasks/tasks.module').then((m) => m.TasksModule),
       },
-    ]
+    ],
   },
-    // redirect to home
-    { path: '**', redirectTo: 'home' }
+  // redirect to home
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

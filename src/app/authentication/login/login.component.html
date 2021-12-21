@@ -32,20 +32,20 @@
               <mat-form-field>
                 <input
                   matInput
-                  placeholder="Username"
-                  required=""
+                  placeholder="Email address"
                   name="email"
                   [(ngModel)]="form.email"
                   #email="ngModel"
+                  email
+                  required
                 />
               </mat-form-field>
-              <div
-                class="alert alert-danger"
-                role="alert"
+              <small
+                class="text-danger support-text"
                 *ngIf="email.errors && f.submitted"
               >
-                Username is required!
-              </div>
+                Email is required!
+              </small>
             </div>
             <!-- col full-->
             <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
@@ -63,16 +63,15 @@
                 />
               </mat-form-field>
               <div
-                class="alert alert-danger"
-                role="alert"
+                class="text-danger support-text"
                 *ngIf="password.errors && f.submitted"
               >
-                <div *ngIf="password.errors['required']">
+                <small *ngIf="password.errors['required']">
                   Password is required
-                </div>
-                <div *ngIf="password.errors['minlength']">
+                </small>
+                <small *ngIf="password.errors['minlength']">
                   Password must be at least 6 characters
-                </div>
+                </small>
               </div>
             </div>
             <!-- col half-->
