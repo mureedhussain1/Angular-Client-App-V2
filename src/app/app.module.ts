@@ -17,6 +17,8 @@ import { DemoMaterialModule } from './demo-material-module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { SpinnerComponent } from './shared/spinner.component';
 import { MenuItems } from './shared/menu-items/menu-items';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { MenuItems } from './shared/menu-items/menu-items';
     AppBreadcrumbComponent,
     HorizontalAppHeaderComponent,
     HorizontalAppSidebarComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +42,10 @@ import { MenuItems } from './shared/menu-items/menu-items';
     DemoMaterialModule,
     PerfectScrollbarModule,
     HttpClientModule,
-
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [MenuItems],
-  bootstrap: [AppComponent]
+  providers: [MenuItems, authInterceptorProviders],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

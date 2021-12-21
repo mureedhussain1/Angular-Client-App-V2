@@ -9,21 +9,23 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 // import { MaterialComponentsModule } from '../material-component/material.module';
 import { DemoMaterialModule } from '../demo-material-module';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AuthenticationComponent,
     ForgetPasswordComponent,
     LoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
     // MaterialComponentsModule,
     FlexLayoutModule,
-    DemoMaterialModule
-  ]
+    DemoMaterialModule,
+    FormsModule,
+  ],
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {}

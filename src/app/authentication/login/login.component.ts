@@ -1,46 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  form: any = {
+    email: null,
+    password: null,
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
 
-  public form: FormGroup = Object.create(null);
-  loginerror = '';
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    // this.clearBrowser()
-    // this.form = this.fb.group({
-    //   email: [null, Validators.compose([Validators.email])],
-    //   password: [null, Validators.compose([Validators.required])]
-    // });
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
   }
+  onSubmit(): void {
+    const { email, password } = this.form;
 
-  // clear browser cached data
-  clearBrowser(){
-    localStorage.clear()
-  }
+    this.authService.login(email, password).subscribe({
+      next: (data) => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data, data);
 
-//sets sesion for user
-  setSession(token:string){
-    // this.authservice.saveToken(token)
-    // this.router.navigate(['/dashboards/dashboard1'])
-  }
-
-  login(username: string, password: string) {
-    // this.authservice.login(this.form.value).subscribe((details:any)=>{
-    //   details.status ? this.setSession(details.token):
-    //     this.loginerror = details.message;
-    //   ;
-    // },(error)=>{
-    //   this.loginerror = error.message
-    //   this.helperservice.dispalyError(this.loginerror)
-    //   // console.log(this.loginerror)
-    // });
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.log(err);
+        this.errorMessage = err.message;
+        this.isLoginFailed = true;
+      },
+    });
   }
 }
