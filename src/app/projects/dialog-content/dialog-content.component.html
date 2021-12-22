@@ -1,0 +1,180 @@
+<div class="top-dialog">
+  <div>
+    <h2 class="font-medium" mat-dialog-title>
+      <strong>{{ action }} Project(s)</strong>
+    </h2>
+  </div>
+  <!-- <div>
+    <small class="cross" (click)="closeDialog()">X</small>
+  </div> -->
+</div>
+<mat-dialog-content class="pb-3" *ngIf="action == 'Filter'">
+  <form #userForm="ngForm">
+    <!-- <div class="d-flex align-items-center m-b-15">
+            <img class="mat-card-avatar" [src]='local_data.imagePath'>
+            <button mat-raised-button color="primary" class="m-l-15 input-file-button">
+                <input type="file" (change)="selectFile($event)" #fileInput>
+            </button>
+        </div> -->
+    <div fxLayout="row wrap" class="align-items-center">
+      <div fxFlex="100" fxFlex.gt-md="100">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="projectname"
+              name="projectname"
+              [(ngModel)]="local_data.projectname"
+              placeholder=" Enter project Name"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="100" fxFlex.gt-md="100">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="position"
+              name="createdBy"
+              [(ngModel)]="local_data.CreatedBy"
+              placeholder="Created By"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                    <mat-form-field>
+                        <input type="text" matInput required id="email" name="email" [(ngModel)]="local_data.Email"
+                            placeholder="Email">
+                    </mat-form-field>
+                </div>
+
+            </div> -->
+      <!-- <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                    <mat-form-field>
+                        <input type="text" matInput required id="mobile" name="mobile" [(ngModel)]="local_data.Mobile"
+                            placeholder="Mobile">
+                    </mat-form-field>
+                </div>
+            </div> -->
+      <!-- <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                    <mat-form-field>
+                        <input type="date" placeholder="Date of Birth" matInput required id="doj" name="doj"
+                            [(ngModel)]="joiningDate">
+                    </mat-form-field>
+                </div>
+            </div> -->
+      <!-- <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                    <mat-form-field>
+                        <input type="text" matInput required id="salary" name="salary" [(ngModel)]="local_data.Salary"
+                            placeholder="Salary">
+                    </mat-form-field>
+                </div>
+            </div> -->
+      <!-- <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                    <mat-form-field>
+                        <input type="text" matInput required id="projects" name="projects"
+                            [(ngModel)]="local_data.Projects" placeholder="Projects">
+                    </mat-form-field>
+                </div>
+            </div> -->
+    </div>
+    <button mat-button (click)="doAction()" mat-flat-button color="warn">
+      {{ action }}
+    </button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-content *ngIf="action == 'Delete'" class="pb-3">
+  <p>Confirm you want to delete this user <b> Project</b> ?</p>
+  <div mat-dialog-actions align="end" class="pt-3">
+    <button mat-button (click)="doAction()" mat-flat-button color="warn">
+      {{ action }}
+    </button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </div>
+</mat-dialog-content>
+
+<div fxLayout="row wrap" *ngIf="action == 'Add'">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-tab-group>
+        <mat-tab label="Create New Project">
+          <mat-card-content>
+            <mat-dialog-content class="pb-3">
+              <form #userForm="ngForm" *ngIf="action == 'Add'">
+                <div fxLayout="row wrap" class="align-items-center">
+                  <div fxFlex="100" fxFlex.gt-md="50">
+                    <div class="m-r-15 m-l-15">
+                      <mat-form-field>
+                        <input
+                          type="text"
+                          matInput
+                          required
+                          id="projectname"
+                          name="projectname"
+                          [(ngModel)]="local_data.projectname"
+                          placeholder="Project Name"
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxFlex="100" fxFlex.gt-md="50">
+                    <div class="m-r-15 m-l-15">
+                      <mat-form-field>
+                        <textarea
+                          placeholder="Description"
+                          type="text"
+                          id="descripton"
+                          name="description"
+                          [(ngModel)]="local_data.description"
+                          matInput
+                          cols="5"
+                          rows="5"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxFlex="100" fxFlex.gt-md="50">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Sectors *</mat-label>
+                      <mat-select [(ngModel)]="local_data.sector" name="sector">
+                        <span *ngFor="let sector of sectors">
+                          <mat-option [value]="sector">
+                            {{ sector.title }}
+                            <sub>{{ sector.description }}</sub>
+                          </mat-option>
+                        </span>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <br />
+                <button
+                  mat-button
+                  (click)="doAction()"
+                  mat-flat-button
+                  color="primary"
+                >
+                  {{ action }}
+                </button>
+                <button mat-button (click)="closeDialog()">Cancel</button>
+              </form>
+            </mat-dialog-content>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

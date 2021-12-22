@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ClientService {
   // private baseurl = 'https://testapi.aicollectapp.com/clientmanagementservice/'
-  private baseurl = 'http://127.0.0.1:4002/clientManagementService/';
+  private baseurl = 'http://164.90.214.25:4002/clientManagementService/';
   constructor(private httpService: HttpClient) {}
   //get client
   public getClient(id: number): Observable<User> {

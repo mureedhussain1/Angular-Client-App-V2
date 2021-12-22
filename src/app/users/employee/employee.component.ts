@@ -38,6 +38,7 @@ export interface Employee {
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatTable, { static: true }) table: MatTable<any> =

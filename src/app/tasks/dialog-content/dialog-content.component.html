@@ -1,0 +1,526 @@
+<h2 class="font-medium" mat-dialog-title>
+  <strong>{{ action }} Task</strong>
+</h2>
+<mat-dialog-content class="pb-3" *ngIf="action == 'Filter'">
+  <form #userForm="ngForm">
+    <div fxLayout="row wrap" class="align-items-center">
+      <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="name"
+              name="name"
+              [(ngModel)]="local_data.Name"
+              placeholder="Name"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="position"
+              name="position"
+              [(ngModel)]="local_data.Position"
+              placeholder="Position"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="email"
+              name="email"
+              [(ngModel)]="local_data.Email"
+              placeholder="Email"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="mobile"
+              name="mobile"
+              [(ngModel)]="local_data.Mobile"
+              placeholder="Mobile"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="date"
+              placeholder="Date of Birth"
+              matInput
+              required
+              id="doj"
+              name="doj"
+              [(ngModel)]="joiningDate"
+            />
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="salary"
+              name="salary"
+              [(ngModel)]="local_data.Salary"
+              placeholder="Salary"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="100" fxFlex.gt-md="50">
+        <div class="m-r-15 m-l-15">
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              required
+              id="projects"
+              name="projects"
+              [(ngModel)]="local_data.Projects"
+              placeholder="Projects"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <button
+      mat-button
+      (click)="doAction()"
+      mat-flat-button
+      color="warn"
+      [disabled]="!userForm.valid"
+    >
+      {{ action }}
+    </button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </form>
+</mat-dialog-content>
+<div fxLayout="row wrap" *ngIf="local_data.action == 'Delete'">
+  <p>
+    Sure to delete <b>{{ local_data.title }}</b> ?
+  </p>
+  <div mat-dialog-actions align="end" class="pt-3">
+    <button mat-button (click)="doAction()" mat-flat-button color="warn">
+      Delete
+    </button>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+  </div>
+</div>
+<div fxLayout="row wrap" *ngIf="action == 'Add'">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <!-- <mat-card-title>Horizontal wizard</mat-card-title> -->
+        <!-- <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button> -->
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+          <mat-step [stepControl]="firstFormGroup">
+            <!-- <form [formGroup]="firstFormGroup"> -->
+            <ng-template matStepLabel>Questionaire Information</ng-template>
+            <div fxLayout="row wrap" class="align-items-center">
+              <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                  <mat-form-field>
+                    <input
+                      type="text"
+                      matInput
+                      required
+                      id="name"
+                      name="name"
+                      [(ngModel)]="local_data.title"
+                      placeholder="Title"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                  <mat-form-field>
+                    <mat-select
+                      [(ngModel)]="local_data.type"
+                      name="type"
+                      placeholder="Task Type*"
+                    >
+                      <mat-option [value]="1"> Registration </mat-option>
+                      <mat-option [value]="2"> Inspection </mat-option>
+                      <mat-option [value]="3"> Training </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxFlex="100" fxFlex.gt-md="100">
+                <div class="m-r-15 m-l-15">
+                  <mat-form-field>
+                    <mat-label>Description*</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      id="description"
+                      name="description"
+                      [(ngModel)]="local_data.taskdescription"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                  <mat-form-field>
+                    <mat-label>Start Date*</mat-label>
+                    <input
+                      type="date"
+                      matInput
+                      id="startdate"
+                      name="startdate"
+                      [(ngModel)]="local_data.startdate"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxFlex="100" fxFlex.gt-md="50">
+                <div class="m-r-15 m-l-15">
+                  <mat-form-field>
+                    <mat-label>End Date*</mat-label>
+                    <input
+                      type="date"
+                      matInput
+                      id="enddate"
+                      name="enddate"
+                      [(ngModel)]="local_data.duedate"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div
+                fxFlex="100"
+                fxFlex.gt-md="50"
+                *ngIf="local_data.type != '1'"
+              >
+                <div class="m-r-15 m-l-15">
+                  <mat-form-field>
+                    <mat-select
+                      [(ngModel)]="local_data.gpslock"
+                      name="gpslock"
+                      placeholder="GPS Lock"
+                    >
+                      <mat-option [value]="1"> no </mat-option>
+                      <mat-option [value]="2"> yes </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div
+                fxFlex="100"
+                fxFlex.gt-md="100"
+                *ngIf="local_data.type != '1'"
+              >
+                <div fxFlex="100" fxFlex.gt-md="50">
+                  <div class="m-r-15 m-l-15">
+                    <h5 *ngIf="local_data.type != '1'">Set Recurring Task</h5>
+
+                    <mat-form-field>
+                      <mat-select
+                        [(ngModel)]="local_data.visittype"
+                        name="visittype"
+                        placeholder="Visit Type"
+                      >
+                        <mat-option [value]="1"> Weekly </mat-option>
+                        <mat-option [value]="2"> Monthly </mat-option>
+                        <mat-option [value]="3"> Quarterly </mat-option>
+                        <mat-option [value]="4"> Annually </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-md="50">
+                  <div class="m-r-15 m-l-15">
+                    <h5 *ngIf="local_data.type != '1'">_</h5>
+
+                    <mat-form-field>
+                      <mat-select
+                        [(ngModel)]="local_data.day"
+                        name="day"
+                        placeholder="Day"
+                      >
+                        <mat-option [value]="1"> Monday </mat-option>
+                        <mat-option [value]="2"> Tuesday </mat-option>
+                        <mat-option [value]="3"> Wednesday </mat-option>
+                        <mat-option [value]="4"> Thursday </mat-option>
+                        <mat-option [value]="5"> Friday </mat-option>
+                        <mat-option [value]="6"> Saturday </mat-option>
+                        <mat-option [value]="7"> Sunday </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <br />
+            </div>
+
+            <br />
+            <div>
+              <p class="alert" *ngIf="error">
+                All fields marked * are required
+              </p>
+              <!-- <button
+                mat-raised-button
+                color="warn"
+                (click)="clickInterceptor(1)"
+                matStepperNext
+              >
+                Next
+              </button> -->
+            </div>
+            <!-- </form> -->
+          </mat-step>
+          <mat-step
+            [stepControl]="secondFormGroup"
+            *ngIf="local_data.type == '1'"
+          >
+            <!-- <form [formGroup]="secondFormGroup"> -->
+            <ng-template matStepLabel>Assign Team Members</ng-template>
+            <div fxFlex="100" fxFlex.gt-md="100">
+              <div fxFlex="100" fxFlex.gt-md="100">
+                <div class="m-r-15 m-l-15">
+                  <section>
+                    <p *ngIf="local_data.type == '1'">
+                      <mat-checkbox
+                        class="example-margin"
+                        id="users"
+                        name="users"
+                        (change)="selectAllUsers($event)"
+                        >Select All</mat-checkbox
+                      >
+                    </p>
+                    <span *ngIf="!allusers">
+                      <span *ngFor="let user of team; let i = index">
+                        <p>
+                          <mat-checkbox
+                            class="example-margin"
+                            (change)="showOptions($event, user)"
+                            >{{ user.names }}</mat-checkbox
+                          >
+                        </p>
+                      </span>
+                    </span>
+                  </section>
+                </div>
+              </div>
+              <p class="alert" *ngIf="userqtnerrror != ''">
+                {{ userqtnerrror }}
+              </p>
+            </div>
+            <div>
+              <button mat-raised-button color="accent" matStepperPrevious>
+                Back
+              </button>
+              <button mat-raised-button color="warn" matStepperNext>
+                Next
+              </button>
+            </div>
+            <!-- </form> -->
+          </mat-step>
+          <mat-step *ngIf="local_data.type != '1'">
+            <ng-template matStepLabel>Assign Profiles</ng-template>
+            <div fxFlex="100" fxFlex.gt-md="100">
+              <button
+                (click)="createMode('show')"
+                *ngIf="createoption != 'show'"
+              >
+                Create Relation
+              </button>
+              <button
+                (click)="createMode('save')"
+                *ngIf="createoption == 'show'"
+              >
+                Save Relation
+              </button>
+              <button
+                (click)="createMode('cancel')"
+                *ngIf="createoption == 'show'"
+              >
+                Cancel
+              </button>
+              <br />
+              <div class="m-r-15 m-l-15">
+                <div
+                  fxFlex.gt-sm="100"
+                  fxFlex="100"
+                  *ngIf="createoption == 'show'"
+                >
+                  <div fxFlex="50" fxFlex.gt-md="50">
+                    <div class="m-r-15 m-l-15">
+                      <section>
+                        <h5>Select team member</h5>
+                        <mat-radio-group
+                          aria-labelledby="example-radio-group-label"
+                          class="example-radio-group"
+                          [(ngModel)]="creationmode_user"
+                        >
+                          <mat-radio-button
+                            class="example-radio-button"
+                            *ngFor="let user of team"
+                            [value]="user"
+                          >
+                            {{ user.names }}
+                          </mat-radio-button>
+                          <br />
+                        </mat-radio-group>
+                      </section>
+                    </div>
+                  </div>
+                  <div fxFlex="50" fxFlex.gt-md="50">
+                    <div class="m-r-15 m-l-15">
+                      <section>
+                        <h5>Attach Profile</h5>
+                        <p>
+                          <mat-checkbox
+                            class="example-margin"
+                            id="allprofiles"
+                            name="allprofiles"
+                            (change)="selectAllProfiles($event)"
+                            >Select All</mat-checkbox
+                          >
+                        </p>
+                        <span *ngIf="!allprofiles">
+                          <span *ngFor="let profile of profiles; let i = index">
+                            <p>
+                              <mat-checkbox
+                                class="example-margin"
+                                (change)="
+                                  showAddOrRemoveProfile($event, profile)
+                                "
+                                >{{ profile.biodata.name }}</mat-checkbox
+                              >
+                            </p>
+                          </span>
+                        </span>
+                      </section>
+                    </div>
+                  </div>
+                  <p *ngIf="assignederror != ''">{{ assignederror }}</p>
+                </div>
+                <div
+                  fxFlex.gt-sm="100"
+                  fxFlex="100"
+                  *ngIf="createoption != 'show'"
+                >
+                  <div class="responsive-table">
+                    <mat-table #table [dataSource]="dataSource">
+                      <ng-container matColumnDef="#">
+                        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+                        <mat-cell
+                          mat-cell
+                          *matCellDef="let element; let i = index"
+                        >
+                          {{ i + 1 }}
+                        </mat-cell>
+                      </ng-container>
+                      <!-- Position Column -->
+                      <ng-container matColumnDef="Agent">
+                        <mat-header-cell *matHeaderCellDef>
+                          Agent
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                          {{ element.names }}
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="profiles">
+                        <mat-header-cell *matHeaderCellDef>
+                          Profiles
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                          <p *ngFor="let profile of element.profiles">
+                            {{ profile.biodata.name }}
+                          </p>
+                          <br />
+                        </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row
+                        *matHeaderRowDef="displayedColumns"
+                      ></mat-header-row>
+                      <mat-row
+                        *matRowDef="let row; columns: displayedColumns"
+                      ></mat-row>
+                    </mat-table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button mat-raised-button color="accent" matStepperPrevious>
+                Back
+              </button>
+              <button mat-raised-button color="warn" matStepperNext>
+                Next
+              </button>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Assign Questionaire</ng-template>
+            <div fxFlex="100" fxFlex.gt-md="50">
+              <div class="m-r-15 m-l-15">
+                <h5>Select questioniare</h5>
+                <section>
+                  <!-- <p><mat-checkbox class="example-margin" id="qtns" name="qtns" (change)='selectAllQtns($event)'>Select All</mat-checkbox></p> -->
+                  <span *ngIf="!allqtns">
+                    <span *ngFor="let qtn of questionaires; let i = index">
+                      <p>
+                        <mat-checkbox
+                          class="example-margin"
+                          (change)="showQtnOptions($event, qtn.questionaireid)"
+                          >{{ qtn.questionaire[0].title }}</mat-checkbox
+                        >
+                      </p>
+                    </span>
+                  </span>
+                </section>
+              </div>
+            </div>
+            <div>
+              <button mat-raised-button color="accent" matStepperPrevious>
+                Back
+              </button>
+              <button mat-raised-button color="warn" (click)="doAction()">
+                Save
+              </button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+        <p *ngIf="userqtnerrror != ''">{{ userqtnerrror }}</p>
+        <p *ngIf="error">Missing required * fields</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
