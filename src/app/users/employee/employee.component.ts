@@ -22,6 +22,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { helperService } from 'src/app/services/helper.service';
 import { Router } from '@angular/router';
 import { MatRadioChange } from '@angular/material/radio';
+import { EmployeeDialogContent } from './dialog-content/dialog-content.component';
 export interface Employee {
   id: number;
   Name: string;
@@ -68,6 +69,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     public datePipe: DatePipe,
+    public dialogRef: MatDialogRef<EmployeeDialogContent>,
     private userService: UserService,
     private helperservice: helperService,
     private router: Router
@@ -88,21 +90,21 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   // function to open dialogue
 
   openDialog(action: string, obj: any): void {
-    //         obj.action = action;
-    //         const dialogRef = this.dialog.open(EmployeeDialogContent, {
-    //             data: obj
-    //         });
-    // // funtion to close mat dialoge
-    //         dialogRef.afterClosed().subscribe(result => {
-    //             if (result.event === 'Add') {
-    //                 this.addRowData();
-    //             } else if (result.event === 'Filter') {
-    //                 this.searchData(result.data);
-    //             }
-    //             else if (result.event === 'Delete') {
-    //                 this.deleteData(result.data);
-    //             }
-    //         });
+    obj.action = action;
+
+    const dialogRef = this.dialog.open(EmployeeDialogContent, {
+      data: obj,
+    });
+    // funtion to close mat dialoge
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.event === 'Add') {
+        this.addRowData();
+      } else if (result.event === 'Filter') {
+        this.searchData(result.data);
+      } else if (result.event === 'Delete') {
+        this.deleteData(result.data);
+      }
+    });
   }
 
   // tslint:disable-next-line - Disables all

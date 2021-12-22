@@ -19,6 +19,7 @@ import { SpinnerComponent } from './shared/spinner.component';
 import { MenuItems } from './shared/menu-items/menu-items';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    TranslateModule.forRoot(),
   ],
   providers: [MenuItems, authInterceptorProviders],
   bootstrap: [AppComponent],

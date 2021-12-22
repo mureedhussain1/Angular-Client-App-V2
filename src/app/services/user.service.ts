@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class UserService {
   // private userMgtUrl = 'https://testapi.aicollectapp.com/usermanagementservice/'
-  private userMgtUrl = 'http://164.90.214.25/userManagementService/';
+  private userMgtUrl = 'http://164.90.214.25:4001/userManagementService/';
   constructor(private httpService: HttpClient) {}
 
   public searchUsers(searchparam: any) {
