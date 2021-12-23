@@ -23,6 +23,19 @@ export class UserService {
   }
 
   public addUser(userdata: any) {
+    console.log(userdata);
+    if (userdata?.role === 'Administrator') {
+      userdata.role = 3;
+    }
+    if (userdata?.role === 'Super Administrator') {
+      userdata.role = 2;
+    }
+    if (userdata?.role === 'Standard User') {
+      userdata.role = 7;
+    }
+    if (userdata?.role === 'title') {
+      userdata.role = 13;
+    }
     return this.httpService.post(
       `${this.userMgtUrl}addNewAdministrator`,
       userdata
