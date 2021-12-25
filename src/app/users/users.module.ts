@@ -12,6 +12,11 @@ import { AddComponent } from './employee/add/add.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { EmployeeDialogContent } from './employee/dialog-content/dialog-content.component';
+import {
+  UserprofileComponent,
+  userProfileDialogContent,
+} from './userprofile/userprofile.component';
+import { AdminprofileComponent } from './adminprofile/adminprofile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +25,9 @@ import { EmployeeDialogContent } from './employee/dialog-content/dialog-content.
     EmployeeTopCardComponent,
     AddComponent,
     EmployeeDialogContent,
+    UserprofileComponent,
+    userProfileDialogContent,
+    AdminprofileComponent,
   ],
   imports: [
     CommonModule,

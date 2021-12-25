@@ -20,8 +20,12 @@
     </a>
   </div>
   <mat-menu #sdprofile="matMenu" class="mymegamenu">
-    <button mat-menu-item><mat-icon>settings</mat-icon> Settings</button>
-    <button mat-menu-item><mat-icon>account_box</mat-icon> Profile</button>
+    <button mat-menu-item routerLink="/users/adminprofile">
+      <mat-icon>settings</mat-icon> Settings
+    </button>
+    <button mat-menu-item routerLink="/users/adminprofile">
+      <mat-icon>account_box</mat-icon> Profile
+    </button>
     <!-- <button mat-menu-item>
             <mat-icon>notifications_off</mat-icon> Disable notifications
         </button> -->

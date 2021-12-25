@@ -1,0 +1,79 @@
+
+
+<!-- lay out component for admin -->
+
+<div fxLayout="row wrap">
+    <!-- 0.25 division collumn-->
+    <div fxFlex.gt-sm="25" fxFlex="100">
+        <mat-card class="oh text-center little-profile">
+            <img mat-card-image src="assets/images/background/profile-bg.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <div class="pro-img">
+                    <img src='assets/images/users/placeholder.png' width="100" alt="user">
+                </div>
+                <h3 class="m-b-0">{{adminprofile.name}}</h3>
+                <h6 class="m-t-0 ">{{adminprofile.role.title}}</h6>
+                <mat-card-actions>
+                    <button mat-raised-button color="warn">Change profile picture</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- 0.75 division collumn -->
+    <div fxFlex.gt-sm="75" fxFlex="100">
+        <mat-card>
+            <mat-tab-group>
+                <mat-tab label="My Profile">
+                    <mat-card-content>
+                        <div class="d-flex no-blcok" >
+                            <div class="p-b-20 b-b m-b-30">
+                                <h4 class="m-0">
+                                    Personal Information
+                                </h4><br>                           
+                                <h5 class="m-0"> First Name
+                                </h5>
+                                <p class="text-muted">{{adminprofile.name}}</p>
+                                <h5>Last Name</h5>
+                                <p class="text-muted">{{adminprofile.name}}</p>
+                                <h5 class="m-0">Password         
+                                </h5>
+                                <p class="text-muted">***********</p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <div class="d-flex no-blcok" >
+                            <div class="p-b-20 b-b m-b-30">
+                                <h4 class="m-0">
+                                    Contact Information
+                                </h4><br>                            
+                                <h5 class="m-0">Phone Number
+                                </h5>
+                                <p class="text-muted">+256798654345</p>
+                                <h5>Email Address</h5>
+                                <p class="text-muted">{{adminprofile.email}}</p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <div class="d-flex no-blcok" >
+                            <div class="p-b-20 b-b m-b-30">
+                                <h4 class="m-0">
+                                    System Information
+                                </h4><br>                            
+                                <h5 class="m-0">Access Level
+                                </h5>
+                                <p class="text-muted">Admin</p>
+                                <h5>Date Created</h5>
+                                <p class="text-muted">12th Jan 2021</p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="warn">Update Profile</button>
+                    </mat-card-actions>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </div>
+</div>

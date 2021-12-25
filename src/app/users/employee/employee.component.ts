@@ -96,6 +96,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(EmployeeDialogContent, {
       data: obj,
     });
+    console.log({ obj });
     // funtion to close mat dialoge
     dialogRef.afterClosed().subscribe((result) => {
       if (result.event === 'Add') {
@@ -130,6 +131,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   }
 
   //function to delete data from data tables and db
+
   deleteData(row_obj: any) {
     this.userService.deleteAUsers(row_obj.id).subscribe(
       (action: any) => {
@@ -175,7 +177,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 
   // function that calls user profile data
   public userProfile(user: any) {
-    this.router.navigate(['/App/Userprofile'], {
+    this.router.navigate(['/users/Userprofile'], {
       queryParams: {
         profile: JSON.stringify(user),
       },

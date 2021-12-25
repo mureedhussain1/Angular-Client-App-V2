@@ -101,7 +101,7 @@
 <!-- Profile - style you can find in header.scss -->
 <!-- ============================================================== -->
 <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
-  <!-- <img class="mat-card-avatar" [src]="'assets/images/users/2.jpg'" /> -->
+  <img class="mat-card-avatar" [src]="'assets/images/users/2.jpg'" />
 </button>
 <!-- [src]="
       userprofile?.imagePath
@@ -109,8 +109,10 @@
         : 'assets/images/users/2.jpg'
     " -->
 <mat-menu #profile="matMenu" class="mymegamenu">
-  <button mat-menu-item><mat-icon>settings</mat-icon> Settings</button>
-  <button routerLink="/App/adminprofile" mat-menu-item>
+  <button mat-menu-item routerLink="/users/adminprofile">
+    <mat-icon>settings</mat-icon> Settings
+  </button>
+  <button routerLink="/users/adminprofile" mat-menu-item>
     <mat-icon>account_box</mat-icon> Profile
   </button>
   <!-- <button mat-menu-item>

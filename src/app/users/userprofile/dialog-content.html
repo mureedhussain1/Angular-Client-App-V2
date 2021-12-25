@@ -1,0 +1,13 @@
+<h2 class="font-medium" mat-dialog-title><strong>Disable User</strong></h2>
+
+<mat-dialog-content class='pb-3'>
+    <p>Confirm you want to disable this user </p>
+    <div mat-dialog-actions align="end" class="pt-3">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Gve  a comment</mat-label>
+            <textarea matInput  name="comment" [(ngModel)]="comment" [value]='comment' placeholder="Reason for action..."></textarea>
+          </mat-form-field>
+        <button mat-button (click)="doAction()" mat-flat-button color="warn">Disable</button>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+    </div>
+</mat-dialog-content>

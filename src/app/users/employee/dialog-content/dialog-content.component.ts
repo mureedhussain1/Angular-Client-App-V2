@@ -143,6 +143,7 @@ export class EmployeeDialogContent {
   // do function to listen to add user action
   doAction(): void {
     this.additionerror = false;
+    console.log(this.action);
     if (this.action == 'Add') {
       console.log(this.local_data);
       if (
