@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProjectDetailComponent } from './projectdetail/project-detail.component';
 import { ProjectsComponent } from './projects.component';
 
 const routes: Routes = [
@@ -9,6 +10,18 @@ const routes: Routes = [
     data: {
       name: 'Projects',
       urls: [{ title: 'Dashboard' }, { title: 'Projects' }],
+    },
+  },
+
+  {
+    path: 'Projectdetail/:id',
+    component: ProjectDetailComponent,
+    data: {
+      // title: 'Project Profile',
+      urls: [
+        { title: 'Project', url: '/projects/project-detail' },
+        { title: 'Project' },
+      ],
     },
   },
 ];

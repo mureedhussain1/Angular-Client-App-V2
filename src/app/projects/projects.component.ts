@@ -62,7 +62,8 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     public datePipe: DatePipe,
     private clientproject: ClientprojectService,
-    private helperservice: helperService
+    private helperservice: helperService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -73,8 +74,9 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
   //applys auto filters
-  applyFilter(filterValue: any): void {
-    this.dataSource.filter = filterValue.target.value.trim().toLowerCase();
+  applyFilter(event: any): void {
+    console.log(event);
+    this.dataSource.filter = event.target.value.trim().toLowerCase();
   }
   //performs manual search
   searchData(row_obj: any) {
@@ -164,5 +166,14 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
         this.helperservice.dispalyError(error.error);
       }
     );
+  }
+
+  public projectDetail(project: any) {
+    console.log(project);
+    this.router.navigate(['/Projectdetail', project._id], {
+      queryParams: {
+        profile: JSON.stringify(project),
+      },
+    });
   }
 }

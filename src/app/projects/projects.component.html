@@ -54,8 +54,8 @@
                 class="routelink"
                 mat-cell
                 *matCellDef="let element"
-                class="pointer"
-                [routerLink]="['/App/Project1', element._id]"
+                class="cursor"
+                (click)="projectDetail(element)"
               >
                 <div class="d-flex">
                   <p class="font-medium m-b-0 m-t-0">

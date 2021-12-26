@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { DemoMaterialModule } from '../demo-material-module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { LockscreenComponent } from './lockscreen/lockscreen.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     ForgetPasswordComponent,
     LoginComponent,
     ResetPasswordComponent,
+    LockscreenComponent,
   ],
   imports: [
     CommonModule,
