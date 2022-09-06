@@ -1,7 +1,7 @@
 export class ApiConstants {
-
   public static ENV = 'live'; // 'local' or 'live'
-  public static BASE_URL = ApiConstants.ENV === 'local' ? 'http://localhost' : 'http://192.168.1.104';
+  public static BASE_URL =
+    ApiConstants.ENV === 'local' ? 'http://localhost' : 'http://164.90.214.25';
   public static AUTH_SVC_PORT = '4000';
   public static USR_SVC_PORT = '4001';
   public static CLIENT_SVC_PORT = '4002';
@@ -19,9 +19,4 @@ export class ApiConstants {
   public static PROJ_MAIN_SVC_URL = `${ApiConstants.BASE_URL}:${ApiConstants.PROJ_SVC_PORT}/mainManagementService`;
   public static TASK_MGMT_SVC_URL = `${ApiConstants.BASE_URL}:${ApiConstants.TASK_SVC_PORT}/taskManagementService`;
   public static TASK_ANS_COL_SVC_URL = `${ApiConstants.BASE_URL}:${ApiConstants.TASK_SVC_PORT}/answerCollectionService`;
-
-
-
-
-
 }

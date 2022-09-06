@@ -1,0 +1,84 @@
+<div class="top-dialog">
+  <div>
+    <h2 mat-dialog-title>
+      <strong>{{ action }} Project Team Member</strong>
+    </h2>
+  </div>
+  <!-- <div>
+    <small class="cross" (click)="closeDialog()">X</small>
+  </div> -->
+</div>
+<mat-dialog-content
+  class="mat-typography"
+  *ngIf="action != 'Delete'; else elseTemplate"
+>
+  <form #userForm="ngForm">
+    <h3>Add a member to a project</h3>
+    <br />
+    <div fxLayout="row wrap" class="align-items-center">
+      <div fxFlex="100" fxFlex.gt-md="100">
+        <div class="m-r-15 m-l-15">
+          <label class="example-margin">Team Members</label>
+          <br />
+          <mat-form-field>
+            <mat-select
+              [(ngModel)]="local_data.userid"
+              name="userid"
+              placeholder="Project Team Members"
+            >
+              <span *ngFor="let user of users">
+                <mat-option [value]="user.id">
+                  {{ user.firstname }} &nbsp;{{ user.lastname }}
+                </mat-option>
+              </span>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <br />
+      <div fxFlex="100" fxFlex.gt-md="100">
+        <div class="m-r-15 m-l-15">
+          <label class="example-margin">Project Roles</label>
+          <br />
+          <mat-radio-group name="role" [(ngModel)]="local_data.role">
+            <mat-radio-button
+              class="example-margin"
+              color="primary"
+              value="inspector"
+            >
+              Inspector
+            </mat-radio-button>
+            <mat-card-subtitle> Does project Inspection </mat-card-subtitle>
+            <br />
+            <mat-radio-button
+              class="example-margin"
+              color="primary"
+              value="manager"
+            >
+              Project Manager
+            </mat-radio-button>
+            <mat-card-subtitle> Manages Project Activities </mat-card-subtitle>
+          </mat-radio-group>
+        </div>
+      </div>
+      <br />
+      <!-- <div fxFlex="100" fxFlex.gt-md="100">
+        <div class="m-r-15 m-l-15">
+            <mat-form-field>
+                <mat-label> Expirely Date*</mat-label>
+                <input type="date" matInput  id="startdate" name="expirelydate" [(ngModel)]="local_data.expirelydate">
+            </mat-form-field>
+        </div>
+    </div> -->
+    </div>
+  </form>
+</mat-dialog-content>
+<ng-template #elseTemplate>
+  Sure to delete <b>{{ local_data.title }} Project Member</b>?
+</ng-template>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="doAction()" mat-flat-button color="warn">
+    {{ action }}
+  </button>
+  <button mat-button (click)="closeDialog()" mat-flat-button>Cancel</button>
+</div>

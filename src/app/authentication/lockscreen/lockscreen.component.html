@@ -1,0 +1,76 @@
+<div
+  class="login-register"
+  style="background-image: url(assets/images/background/login-register.jpg)"
+>
+  <div class="login-register-box">
+    <mat-card>
+      <mat-card-content>
+        <form
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="text-center">
+            <img
+              alt="homepage"
+              src="assets/images/logo-normal.png"
+              class="ai-logo"
+            />
+          </div>
+          <div class="text-center">
+            <img
+              src="assets/images/users/placeholder.png"
+              class="img-circle"
+              width="80"
+              alt="user"
+              title="user"
+            />
+            <h4 class="m-t-0">{{ user.name }}</h4>
+          </div>
+
+          <div fxLayout="row wrap">
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field style="width: 100%">
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  [(ngModel)]="form.password"
+                  required
+                  minlength="6"
+                  #password="ngModel"
+                />
+              </mat-form-field>
+              <div
+                class="text-danger support-text"
+                *ngIf="password.errors && f.submitted"
+              >
+                <small *ngIf="password.errors['required']">
+                  Password is required
+                </small>
+                <small *ngIf="password.errors['minlength']">
+                  Password must be at least 6 characters
+                </small>
+              </div>
+            </div>
+            <!-- col full-->
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <button
+                mat-raised-button
+                class="btn-block btn-lg m-t-10 m-b-10"
+                color="primary"
+                type="submit"
+                [disabled]="!form.valid"
+              >
+                Unlock Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

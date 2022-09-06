@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 // import { CustomValidators } from 'ngx-custom-validators';
 
 @Component({
@@ -9,27 +10,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./forget-password.component.scss'],
 })
 export class ForgetPasswordComponent implements OnInit {
+  form: any = {
+    email: null,
+  };
+  isForgotPassword = false;
+  isHideForm = true;
+  message = '';
+  errorMessage = '';
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  public form: FormGroup = Object.create(null);
-  constructor(private fb: FormBuilder, private router: Router) {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    // this.form = this.fb.group({
-    //   email: [
-    //     null,
-    //     Validators.compose([Validators.required, CustomValidators.email])
-    //   ]
-    // });
-  }
   // submits password reset details
   onSubmit(): void {
-    // this.userservice.requestPasswordResset(this.form.value).subscribe(
-    //   (action: any) => {
-    //     this.helperservice.dispalyError(action.msg || action);
-    //   },
-    //   (error: any) => {
-    //     this.helperservice.dispalyError(error.error);
-    //   }
-    // );
+    const { email } = this.form;
+
+    this.authService.forgotPassword(email).subscribe({
+      next: (data) => {
+        if (data?.status) {
+          this.message = data?.message;
+          this.isForgotPassword = true;
+          this.isHideForm = true;
+        } else {
+          console.log(data);
+          this.message = data?.message;
+          this.isForgotPassword = false;
+          this.isHideForm = false;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        this.errorMessage = err.message;
+      },
+    });
   }
 }

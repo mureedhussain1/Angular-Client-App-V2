@@ -1,0 +1,153 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <h4>{{ projectprofile.projectname }}</h4>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div
+    fxFlex.gt-sm="20"
+    fxFlex.gt-xs="100"
+    fxFlex="100"
+    *ngFor="let module of projectmodules"
+  >
+    <mat-card class="pointer" (click)="goToActiveModule(module)">
+      <mat-card-content>
+        <div class="d-flex no-block">
+          <div *ngIf="module.module.type === 'REG'" class="m-r-10 no-shrink">
+            <button
+              mat-fab
+              color="primary"
+              mat-card-icon
+              class="shadow-none bg-primary"
+            >
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="module.module.type === 'INS'" class="m-r-10 no-shrink">
+            <button
+              mat-fab
+              color="warn"
+              mat-card-icon
+              class="shadow-none bg-warning"
+            >
+              <mat-icon>label_important</mat-icon>
+            </button>
+          </div>
+          <div>
+            <h4 *ngIf="module.module.type === 'INS'" class="m-0">0</h4>
+            <h4 *ngIf="module.module.type === 'REG'" class="m-0">
+              {{ questionairecount.length }}
+            </h4>
+            <h5 class="text-muted m-0">
+              {{
+                module.module.type === "INS"
+                  ? "Inspection"
+                  : module.module.type === "REG"
+                  ? "Registration"
+                  : "Training"
+              }}
+            </h5>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="row wrap" class="align-items-center">
+          <div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100">
+            <mat-form-field>
+              <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Search Team Members"
+              />
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-md="75" class="text-right">
+            <button
+              mat-raised-button
+              (click)="openDialog('Add', {})"
+              color="primary"
+              style="margin-right: 10px"
+            >
+              <mat-icon>add</mat-icon>
+              Add Member
+            </button>
+            <!-- <button
+              mat-raised-button
+              (click)="goTo('TaskManager')"
+              color="success"
+            > -->
+            <button mat-raised-button (click)="goTo('tasks')" color="success">
+              <mat-icon>dns</mat-icon>
+              Task Manager
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <h4>Project Team</h4>
+        <div class="table-responsive">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            class="table ticket-list no-wrap"
+          >
+            <ng-container matColumnDef="Names">
+              <th mat-header-cell *matHeaderCellDef>Names</th>
+              <td mat-cell *matCellDef="let element">{{ element.names }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Role">
+              <th mat-header-cell *matHeaderCellDef>Role</th>
+              <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Assignee">
+              <th mat-header-cell *matHeaderCellDef>Added By</th>
+              <td mat-cell *matCellDef="let element">{{ element.assignee }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Date Created">
+              <th mat-header-cell *matHeaderCellDef>Date Created</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.createdAt }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let element" class="action-link">
+                <a
+                  (click)="openDialog('Delete', element)"
+                  class="m-r-10 cursor-pointer"
+                >
+                  <i class="fa fa-trash text-danger"></i>
+                </a>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

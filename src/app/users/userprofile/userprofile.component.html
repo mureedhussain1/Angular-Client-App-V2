@@ -1,0 +1,124 @@
+
+<!-- ============================================================== -->
+<!-- Image Card row-->
+<!-- ============================================================== -->
+<div fxLayout="row wrap">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="25" fxFlex="100">
+      <mat-card class="oh text-center little-profile">
+          <img mat-card-image src="assets/images/background/profile-bg.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+              <div class="pro-img">
+                  <img [src]="userprofile.image ? userprofile.image:'assets/images/users/placeholder.png'" width="100" alt="user">
+              </div>
+              <h3 class="m-b-0">{{userprofile.firstname}} {{userprofile.lastname}}</h3>
+              <h6 class="m-t-0 ">{{userprofile.client != null ? userprofile.client.organizationname : "Rockside"}}</h6>
+              <h6 class="m-t-0 ">{{userprofile.administratorrole.title}}</h6>
+          </mat-card-content>
+      </mat-card>
+  </div>
+  <!-- Card column -->
+  <!-- Card column -->
+  <div fxFlex.gt-sm="75" fxFlex="100">
+      <mat-card>
+          <mat-tab-group>
+            <mat-tab label="Profile">
+                <mat-card-content>
+                    <h5>Edit User Bio</h5>
+
+                    <!-- ============================================================== -->
+                    <!-- column -->
+                    <!-- ============================================================== -->
+                    <form class="basic-form">
+                        <div fxLayout="row wrap">
+                            <!-- column -->
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                                <mat-form-field>
+                                    <input matInput placeholder="firstname" name="firstname" [(ngModel)]="userprofile.firstname" [value]='userprofile.firstname'>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                              <mat-form-field>
+                                  <input matInput placeholder="lastname" name="lastname" [(ngModel)]="userprofile.lastname"  [value]='userprofile.lastname'>
+                              </mat-form-field>
+                          </div>
+                            <!-- column -->
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                                <mat-form-field>
+                                    <input matInput placeholder="email" type="email" name="email" [(ngModel)]="userprofile.email"  [value]='userprofile.email'>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                              <mat-form-field>
+                                  <input matInput placeholder="phone" type="text" name="phone" [(ngModel)]="userprofile.phone"  [value]='userprofile.phone'>
+                              </mat-form-field>
+                          </div>
+                            <!-- column -->
+                            <!-- column -->
+                            <div fxFlex="100" fxFlex.gt-md="100">
+                              <mat-form-field appearance="fill">
+                                  <mat-label>Role *</mat-label>
+                                  <mat-select [(ngModel)]="selectedrole" name="role">
+                                      <span *ngFor='let role of systemroles;'>
+                                          <mat-option [value]="role.id">
+                                              {{role.title}}
+                                              <sub>{{role.description}}</sub>
+                                          </mat-option>
+                                      </span>
+                                  </mat-select>
+                              </mat-form-field>
+                          </div>
+                            <div fxFlex.gt-sm="100" fxFlex="100">
+                                <button mat-raised-button color="primary" (click)="submitFrom()">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-tab>  
+            <mat-tab label="Profile Information">
+                <mat-card-content>
+                    <div class="d-flex no-blcok">
+                        <div class="p-b-20 b-b m-b-30">
+                            <h4 class="m-0">First Name</h4>
+                            <p class="text-muted">{{userprofile.firstname}}</p>
+                            <h4 class="m-0">Last Name</h4>
+                            <p class="text-muted">{{userprofile.lastname}}</p>
+                            <h4>Status</h4>
+                            <p *ngIf="userprofile.isActive">Active</p>
+                            <p *ngIf="!userprofile.isActive">Not Active</p>         
+                            <h4 class="m-0">Phone Contact</h4>
+                           <p class="text-muted">{{userprofile.phone}}</p>                
+                        </div>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-content>
+                    <div class="d-flex no-blcok">
+                        <div class="p-b-20 b-b m-b-30">
+                            <h4 class="m-0">Email
+                            </h4>
+                            <p>{{userprofile.email}}</p>     
+                            <h4 class="m-0">Date Added
+                            </h4>
+                            <p>{{userprofile.createdAt}}</p>
+                            <h4 class="m-0">Created By
+                            </h4>
+                            <p>{{userprofile.submittedby.firstname}}&nbsp;{{userprofile.submittedby.lastname}}</p> 
+                            <h4 class="m-0">Enable/Disable User
+                            </h4>
+                            <div class="p-10">
+                                <div class="font-light">
+                                    <button *ngIf="userprofile.isActive" class='mat-raised-button' mat-button color="warn" (click)="showCommentDialog()">Disable</button>
+                                    <button *ngIf="!userprofile.isActive" class='mat-raised-button' mat-button color="primary" (click)="activate()">Activate</button>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-tab>
+              <!-- Tab 2 -->
+              
+          </mat-tab-group>
+      </mat-card>
+  </div>
+</div>
